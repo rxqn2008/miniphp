@@ -1,7 +1,10 @@
 <?php
 
 return array(
-    'dsn' => 'mysql:host=localhost;dbname=webtest',
+    'database_type' => 'mysql',
+    'database_name' => 'jiushiyi',
+    'server' => 'localhost',
     'username' => 'root',
-    'passwd' => '123456'
+    'password' => '123456',
+    'charset' => 'utf8',
 );

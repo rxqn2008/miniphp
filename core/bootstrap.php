@@ -8,6 +8,8 @@
 
 namespace core;
 
+use core\lib\log;
+
 class bootstrap
 {
     public static $classMap = array();
@@ -15,15 +17,18 @@ class bootstrap
 
     public static function run()
     {
+       // log::init();
+
         $route = new \core\lib\route();
-        $class = $route->controller;
+        $ctrlNmae = $route->controller;
         $action = $route->action;
-        $classFile = APP.'/controller/'.$class.'Controller.php';
-        $class = '\\'.MODULE.'\controller\\'.$class.'Controller';
+        $classFile = APP.'/controller/'.$ctrlNmae.'Controller.php';
+        $class = '\\'.MODULE.'\controller\\'.$ctrlNmae.'Controller';
         if(is_file($classFile)){
             include $classFile;
             $controller = new $class();
             $controller->$action();
+            //log::log($ctrlNmae.'=='.$action);
         }else{
             throw new \Exception('找不到控制器 '.$class);
         }

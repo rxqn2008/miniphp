@@ -10,9 +10,19 @@ define('CORE',BASE.'/core');
 define('APP',BASE.'/app');
 define('MODULE','app');
 
+ini_set('date.timezone','Asia/Shanghai');
+
 define('DEBUG',true);
 
+include 'vendor/autoload.php';
+
 if(DEBUG){
+    $whoops = new \Whoops\Run;
+    $errorTitle = '框架出错了';
+    $option = new \Whoops\Handler\PrettyPageHandler;
+    $option->setPageTitle($errorTitle);
+    $whoops->pushHandler($option);
+    $whoops->register();
     ini_set('display_error','On');
 }else{
     ini_set('display_error','Off');
